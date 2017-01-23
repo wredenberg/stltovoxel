@@ -47,10 +47,10 @@ def exportPngs(voxels, bounding_box, outputFilePath):
 
 def exportXyz(voxels, bounding_box, outputFilePath):
     output = open(outputFilePath, 'w')
-    for z in bounding_box[2]:
-        for x in bounding_box[0]:
-            for y in bounding_box[1]:
-                if vol[z][x][y]:
+    for z in range(bounding_box[2]):
+        for x in range(bounding_box[0]):
+            for y in range(bounding_box[1]):
+                if voxels[z][x][y]:
                     output.write('%s %s %s\n'%(x,y,z))
     output.close()
 
@@ -96,4 +96,4 @@ if __name__ == '__main__':
     parser.add_argument('input', nargs='?', type=lambda s:file_choices(('.stl'),s))
     parser.add_argument('output', nargs='?', type=lambda s:file_choices(('.png', '.xyz', '.svx'),s))
     args = parser.parse_args()
-    doExport(args.input, args.output, 100)
+    doExport(args.input, args.output, 40)
